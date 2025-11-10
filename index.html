@@ -3,16 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elegant Interiors | Modern Design Solutions</title>
+    <title>Pure Pleasure Building and Interior Concept LTD</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* Base Styles */
         :root {
             --primary: #8B7355;
-            --secondary: #F5F5F5;
-            --dark: #333333;
-            --light: #FFFFFF;
-            --accent: #D4B896;
+            --secondary: #F5F1EB;
+            --dark: #3A342E;
+            --light: #FDF9F3;
+            --accent: #C4A484;
+            --text: #5A534A;
+            --card-bg: #F8F4ED;
             --transition: all 0.3s ease;
         }
         
@@ -29,7 +31,7 @@
         
         body {
             background-color: var(--secondary);
-            color: var(--dark);
+            color: var(--text);
             line-height: 1.6;
             overflow-x: hidden;
         }
@@ -43,7 +45,7 @@
         
         /* Header Styles */
         header {
-            background-color: var(--light);
+            background-color: var(--dark);
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             position: fixed;
             width: 100%;
@@ -61,12 +63,12 @@
         .logo {
             font-size: 1.8rem;
             font-weight: 700;
-            color: var(--primary);
+            color: var(--light);
             text-decoration: none;
         }
         
         .logo span {
-            color: var(--dark);
+            color: var(--accent);
         }
         
         .nav-links {
@@ -80,25 +82,26 @@
         
         .nav-links a {
             text-decoration: none;
-            color: var(--dark);
+            color: var(--light);
             font-weight: 500;
             transition: var(--transition);
         }
         
         .nav-links a:hover {
-            color: var(--primary);
+            color: var(--accent);
         }
         
         .hamburger {
             display: none;
             cursor: pointer;
             font-size: 1.5rem;
+            color: var(--light);
         }
         
         /* Hero Section */
         .hero {
             height: 100vh;
-            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1615529328331-f8917597711f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') no-repeat center center/cover;
+            background: linear-gradient(rgba(58, 52, 46, 0.7), rgba(58, 52, 46, 0.7)), url('https://images.unsplash.com/photo-1615529328331-f8917597711f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') no-repeat center center/cover;
             display: flex;
             align-items: center;
             text-align: center;
@@ -120,6 +123,7 @@
         .hero p {
             font-size: 1.2rem;
             margin-bottom: 30px;
+            color: var(--light);
         }
         
         .btn {
@@ -141,9 +145,14 @@
         }
         
         /* Gallery Section */
+        .gallery-section {
+            background-color: var(--secondary);
+            padding: 80px 0;
+        }
+        
         .section-title {
             text-align: center;
-            margin: 60px 0 40px;
+            margin-bottom: 40px;
         }
         
         .section-title h2 {
@@ -165,24 +174,39 @@
             transform: translateX(-50%);
         }
         
+        .section-title p {
+            color: var(--text);
+            margin-top: 10px;
+        }
+        
         .gallery {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 30px;
-            margin-bottom: 60px;
         }
         
         .design-card {
-            background-color: var(--light);
+            background-color: var(--card-bg);
             border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
             transition: var(--transition);
+            border: 1px solid rgba(139, 115, 85, 0.1);
+        }
+
+        .design-card::before{
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--primary));
         }
         
         .design-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
         }
         
         .design-img {
@@ -202,7 +226,7 @@
         }
         
         .design-info p {
-            color: #666;
+            color: var(--text);
             font-size: 0.9rem;
             margin-bottom: 15px;
         }
@@ -215,7 +239,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
+            background-color: rgba(58, 52, 46, 0.9);
             z-index: 2000;
             justify-content: center;
             align-items: center;
@@ -223,7 +247,7 @@
         }
         
         .modal-content {
-            background-color: var(--light);
+            background-color: var(--card-bg);
             border-radius: 10px;
             max-width: 800px;
             width: 100%;
@@ -231,11 +255,12 @@
             overflow-y: auto;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             position: relative;
+            border: 1px solid rgba(139, 115, 85, 0.2);
         }
         
         .modal-header {
             padding: 20px;
-            background-color: var(--primary);
+            background-color: var(--dark);
             color: var(--light);
             display: flex;
             justify-content: space-between;
@@ -273,6 +298,7 @@
         
         .modal-description {
             margin-bottom: 20px;
+            color: var(--text);
         }
         
         .modal-actions {
@@ -327,7 +353,7 @@
             align-items: center;
             justify-content: center;
             gap: 10px;
-            background-color: #6c757d;
+            background-color: var(--dark);
             color: var(--light);
             padding: 12px 25px;
             border-radius: 5px;
@@ -339,13 +365,13 @@
         }
         
         .back-btn:hover {
-            background-color: #5a6268;
+            background-color: #2a2520;
         }
         
         /* About Section */
         .about {
             padding: 80px 0;
-            background-color: var(--light);
+            background-color: var(--card-bg);
         }
         
         .about-content {
@@ -379,12 +405,62 @@
         
         .about-text p {
             margin-bottom: 20px;
-            color: #666;
+            color: var(--text);
+        }
+        
+        /* Team Section */
+        .team {
+            padding: 80px 0;
+            background-color: var(--secondary);
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .team-card {
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid rgba(139, 115, 85, 0.1);
+        }
+        
+        .team-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .team-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .team-card h3 {
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+            color: var(--dark);
+        }
+        
+        .team-card .position {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .team-card p {
+            color: var(--text);
         }
         
         /* Services Section */
         .services {
             padding: 80px 0;
+            background-color: var(--card-bg);
         }
         
         .services-grid {
@@ -394,12 +470,13 @@
         }
         
         .service-card {
-            background-color: var(--light);
+            background-color: var(--secondary);
             padding: 30px;
             border-radius: 8px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
             text-align: center;
             transition: var(--transition);
+            border: 1px solid rgba(139, 115, 85, 0.1);
         }
         
         .service-card:hover {
@@ -416,12 +493,17 @@
         .service-card h3 {
             margin-bottom: 15px;
             font-size: 1.3rem;
+            color: var(--dark);
+        }
+        
+        .service-card p {
+            color: var(--text);
         }
         
         /* Contact Section */
         .contact {
             padding: 80px 0;
-            background-color: var(--light);
+            background-color: var(--secondary);
         }
         
         .contact-content {
@@ -436,11 +518,12 @@
         .contact-info h2 {
             font-size: 2.2rem;
             margin-bottom: 20px;
+            color: var(--dark);
         }
         
         .contact-info p {
             margin-bottom: 30px;
-            color: #666;
+            color: var(--text);
         }
         
         .contact-details {
@@ -459,6 +542,11 @@
             font-size: 1.2rem;
         }
         
+        .contact-item p {
+            margin-bottom: 0;
+            color: var(--text);
+        }
+        
         .contact-form {
             flex: 1;
         }
@@ -471,14 +559,24 @@
             display: block;
             margin-bottom: 8px;
             font-weight: 500;
+            color: var(--dark);
         }
         
         .form-control {
             width: 100%;
             padding: 12px 15px;
-            border: 1px solid #ddd;
+            border: 1px solid rgba(139, 115, 85, 0.3);
             border-radius: 5px;
             font-size: 1rem;
+            background-color: var(--light);
+            color: var(--text);
+            transition: var(--transition);
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(139, 115, 85, 0.2);
         }
         
         textarea.form-control {
@@ -610,7 +708,7 @@
                 left: -100%;
                 width: 100%;
                 height: calc(100vh - 70px);
-                background-color: var(--light);
+                background-color: var(--dark);
                 flex-direction: column;
                 align-items: center;
                 justify-content: flex-start;
@@ -646,7 +744,7 @@
                 grid-template-columns: 1fr;
             }
             
-            .services-grid {
+            .services-grid, .team-grid {
                 grid-template-columns: 1fr;
             }
             
@@ -675,11 +773,12 @@
     <header>
         <div class="container">
             <nav class="navbar">
-                <a href="#" class="logo">Elegant<span>Interiors</span></a>
+                <a href="#" class="logo">Pure Pleasure Building and <span>Interior Concept LTD</span></a>
                 <ul class="nav-links">
                     <li><a href="#home">Home</a></li>
                     <li><a href="#gallery">Gallery</a></li>
                     <li><a href="#about">About</a></li>
+                    <li><a href="#team">Our Team</a></li>
                     <li><a href="#services">Services</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
@@ -774,11 +873,47 @@
                     <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="About Us">
                 </div>
                 <div class="about-text">
-                    <h2>About Elegant Interiors</h2>
-                    <p>With over 10 years of experience in interior design, we specialize in creating spaces that are not only beautiful but also functional and reflective of our clients' personalities.</p>
-                    <p>Our team of talented designers works closely with you to understand your vision, preferences, and lifestyle, ensuring that every project is a perfect blend of aesthetics and practicality.</p>
+                    <h2>About Pure Pleasure Building and Interior Concept LTD</h2>
+                    <p>With over 10 years of experience in interior design and construction, we specialize in creating spaces that are not only beautiful but also functional and reflective of our clients' personalities.</p>
+                    <p>Our team of talented designers and contractors works closely with you to understand your vision, preferences, and lifestyle, ensuring that every project is a perfect blend of aesthetics and practicality.</p>
                     <p>We believe that great design has the power to transform lives, and we're passionate about creating environments that inspire, comfort, and delight.</p>
                     <a href="#contact" class="btn">Get In Touch</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team" id="team">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Team</h2>
+                <p>Meet the professionals behind our success</p>
+            </div>
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-icon">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <h3>Abraham Nkwachi Uwaoma</h3>
+                    <p class="position">Managing Director</p>
+                    <p>With extensive experience in building construction and interior design, Abraham leads our team with vision and expertise.</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-icon">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3>Christiana Obiageri Uwaoma</h3>
+                    <p class="position">Director & Shareholder</p>
+                    <p>Christiana brings creative vision and business acumen to our operations, ensuring client satisfaction in every project.</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-icon">
+                        <i class="fas fa-hard-hat"></i>
+                    </div>
+                    <h3>Dr. Chibuzor Onyema</h3>
+                    <p class="position">Project Consultant</p>
+                    <p>Our expert consultant provides valuable insights and oversight for complex construction and design projects.</p>
                 </div>
             </div>
         </div>
@@ -789,29 +924,36 @@
         <div class="container">
             <div class="section-title">
                 <h2>Our Services</h2>
-                <p>Comprehensive interior design solutions</p>
+                <p>Comprehensive building and interior design solutions</p>
             </div>
             <div class="services-grid">
                 <div class="service-card">
                     <div class="service-icon">
                         <i class="fas fa-home"></i>
                     </div>
-                    <h3>Residential Design</h3>
-                    <p>Transform your house into a home with our personalized residential interior design services.</p>
+                    <h3>Residential Design & Construction</h3>
+                    <p>Transform your house into a home with our personalized residential interior design and building services.</p>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">
                         <i class="fas fa-building"></i>
                     </div>
-                    <h3>Commercial Design</h3>
-                    <p>Create inspiring workspaces that boost productivity and reflect your brand identity.</p>
+                    <h3>Commercial Construction</h3>
+                    <p>Create inspiring workspaces, offices, and commercial spaces that reflect your brand identity.</p>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">
                         <i class="fas fa-palette"></i>
                     </div>
-                    <h3>Color Consultation</h3>
-                    <p>Expert guidance on color schemes that enhance your space and create the desired mood.</p>
+                    <h3>Interior Design Consultation</h3>
+                    <p>Expert guidance on color schemes, space planning, and material selection that enhance your space.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <h3>Building Materials Supply</h3>
+                    <p>We import, manufacture, and distribute general building materials, home décor accessories, and related merchandise.</p>
                 </div>
             </div>
         </div>
@@ -831,15 +973,15 @@
                     <div class="contact-details">
                         <div class="contact-item">
                             <i class="fas fa-map-marker-alt"></i>
-                            <p>123 Design Street, Creative City, CC 10101</p>
+                            <p>Babcock University Staff Quarters, Ilishan Remo, Ogun State</p>
                         </div>
                         <div class="contact-item">
                             <i class="fas fa-phone"></i>
-                            <p>+1 (555) 123-4567</p>
+                            <p>0816 262 854</p>
                         </div>
                         <div class="contact-item">
                             <i class="fas fa-envelope"></i>
-                            <p>info@elegantinteriors.com</p>
+                            <p>Abrahamuwaoma71@gmail.com</p>
                         </div>
                     </div>
                     <div class="social-links">
@@ -879,7 +1021,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-col">
-                    <h3>Elegant Interiors</h3>
+                    <h3>Pure Pleasure Building and Interior Concept LTD</h3>
                     <p>Creating beautiful, functional spaces that reflect your unique style and enhance your quality of life.</p>
                     <div class="social-links">
                         <a href="#" title="Follow us on Facebook" aria-label="Follow us on Facebook"><i class="fab fa-facebook-f"></i></a>
@@ -894,23 +1036,24 @@
                         <li><a href="#home">Home</a></li>
                         <li><a href="#gallery">Gallery</a></li>
                         <li><a href="#about">About</a></li>
+                        <li><a href="#team">Our Team</a></li>
                         <li><a href="#services">Services</a></li>
                         <li><a href="#contact">Contact</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h3>Services</h3>
+                    <h3>Our Services</h3>
                     <ul class="footer-links">
                         <li><a href="#">Residential Design</a></li>
-                        <li><a href="#">Commercial Design</a></li>
-                        <li><a href="#">Color Consultation</a></li>
+                        <li><a href="#">Commercial Construction</a></li>
+                        <li><a href="#">Interior Design</a></li>
+                        <li><a href="#">Building Materials</a></li>
                         <li><a href="#">Space Planning</a></li>
-                        <li><a href="#">Furniture Selection</a></li>
                     </ul>
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2023 Elegant Interiors. All Rights Reserved.</p>
+                <p>&copy; 2023 Pure Pleasure Building and Interior Concept LTD. All Rights Reserved. | CAC Registered</p>
             </div>
         </div>
     </footer>
@@ -964,42 +1107,42 @@
                 title: "Modern Living Room",
                 image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1758&q=80",
                 description: "This contemporary living space features clean lines, a neutral color palette with warm wood accents, and strategic lighting to create a cozy yet sophisticated atmosphere. The open layout maximizes natural light while maintaining intimate conversation areas. Custom built-in shelving provides both storage and display opportunities for personal collections.",
-                whatsappLink: "https://wa.me/+2348127890779?text=Hi%20Elegant%20Interiors!%20I'm%20interested%20in%20the%20Modern%20Living%20Room%20design.%20Please%20send%20me%20more%20information.",
+                whatsappLink: "https://wa.me/+234816262854?text=Hi%20Pure%20Pleasure%20Building%20and%20Interior%20Concept!%20I'm%20interested%20in%20the%20Modern%20Living%20Room%20design.%20Please%20send%20me%20more%20information.",
                 emailSubject: "Inquiry about Modern Living Room Design"
             },
             2: {
                 title: "Minimalist Kitchen",
                 image: "https://images.unsplash.com/photo-1616486029423-aaa4789e8c9a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1752&q=80",
                 description: "This efficient kitchen design maximizes space with smart storage solutions and a minimalist aesthetic. The clean white cabinetry is complemented by warm wood tones and sleek hardware. The island serves as both a prep area and casual dining space, while the open shelving provides easy access to daily essentials.",
-                whatsappLink: "https://wa.me/+2348127890779?text=Hi%20Elegant%20Interiors!%20I'm%20interested%20in%20the%20Minimalist%20Kitchen%20design.%20Please%20send%20me%20more%20information.",
+                whatsappLink: "https://wa.me/+234816262854?text=Hi%20Pure%20Pleasure%20Building%20and%20Interior%20Concept!%20I'm%20interested%20in%20the%20Minimalist%20Kitchen%20design.%20Please%20send%20me%20more%20information.",
                 emailSubject: "Inquiry about Minimalist Kitchen Design"
             },
             3: {
                 title: "Serene Bedroom",
                 image: "https://images.unsplash.com/photo-1631679706909-1844bbd07221?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1792&q=80",
                 description: "Create your personal sanctuary with this serene bedroom design. Soft, calming colors and luxurious textures promote relaxation and restful sleep. The custom headboard and layered lighting create a cozy atmosphere, while the minimalist approach to decor reduces visual clutter. Ample storage keeps the space organized and tranquil.",
-                whatsappLink: "https://wa.me/+2348127890779?text=Hi%20Elegant%20Interiors!%20I'm%20interested%20in%20the%20Serene%20Bedroom%20design.%20Please%20send%20me%20more%20information.",
+                whatsappLink: "https://wa.me/+234816262854?text=Hi%20Pure%20Pleasure%20Building%20and%20Interior%20Concept!%20I'm%20interested%20in%20the%20Serene%20Bedroom%20design.%20Please%20send%20me%20more%20information.",
                 emailSubject: "Inquiry about Serene Bedroom Design"
             },
             4: {
                 title: "Productive Home Office",
                 image: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
                 description: "This ergonomic home office design combines functionality with inspiring aesthetics. The standing desk promotes better posture, while the carefully curated decor creates a motivating environment. Ample natural light, strategic task lighting, and built-in organization systems ensure maximum productivity without sacrificing style.",
-                whatsappLink: "https://wa.me/+2348127890779?text=Hi%20Elegant%20Interiors!%20I'm%20interested%20in%20the%20Productive%20Home%20Office%20design.%20Please%20send%20me%20more%20information.",
+                whatsappLink: "https://wa.me/+234816262854?text=Hi%20Pure%20Pleasure%20Building%20and%20Interior%20Concept!%20I'm%20interested%20in%20the%20Productive%20Home%20Office%20design.%20Please%20send%20me%20more%20information.",
                 emailSubject: "Inquiry about Productive Home Office Design"
             },
             5: {
                 title: "Luxury Bathroom",
                 image: "https://images.unsplash.com/photo-1588854337236-6889d631faa8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
                 description: "Transform your daily routine into a spa-like experience with this luxury bathroom design. Premium fixtures, elegant marble finishes, and thoughtful lighting create a serene atmosphere. The freestanding tub serves as a focal point, while the spacious walk-in shower features multiple shower heads for a customized experience.",
-                whatsappLink: "https://wa.me/+2348127890779?text=Hi%20Elegant%20Interiors!%20I'm%20interested%20in%20the%20Luxury%20Bathroom%20design.%20Please%20send%20me%20more%20information.",
+                whatsappLink: "https://wa.me/+234816262854?text=Hi%20Pure%20Pleasure%20Building%20and%20Interior%20Concept!%20I'm%20interested%20in%20the%20Luxury%20Bathroom%20design.%20Please%20send%20me%20more%20information.",
                 emailSubject: "Inquiry about Luxury Bathroom Design"
             },
             6: {
                 title: "Outdoor Living Space",
                 image: "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
                 description: "Extend your living space outdoors with this beautifully designed patio area. Comfortable, weather-resistant furniture creates multiple conversation areas, while strategic landscaping provides privacy and visual interest. The built-in fire pit extends the usability of the space into cooler evenings, creating a perfect spot for entertaining or relaxing.",
-                whatsappLink: "https://wa.me/+2348127890779?text=Hi%20Elegant%20Interiors!%20I'm%20interested%20in%20the%20Outdoor%20Living%20Space%20design.%20Please%20send%20me%20more%20information.",
+                whatsappLink: "https://wa.me/+234816262854?text=Hi%20Pure%20Pleasure%20Building%20and%20Interior%20Concept!%20I'm%20interested%20in%20the%20Outdoor%20Living%20Space%20design.%20Please%20send%20me%20more%20information.",
                 emailSubject: "Inquiry about Outdoor Living Space Design"
             }
         };
@@ -1024,7 +1167,7 @@
                 modalImage.src = design.image;
                 modalDescription.textContent = design.description;
                 whatsappLink.href = design.whatsappLink;
-                emailLink.href = `mailto:info@elegantinteriors.com?subject=${encodeURIComponent(design.emailSubject)}`;
+                emailLink.href = `mailto:Abrahamuwaoma71@gmail.com?subject=${encodeURIComponent(design.emailSubject)}`;
                 
                 modal.style.display = 'flex';
                 document.body.style.overflow = 'hidden';
@@ -1058,10 +1201,10 @@
             const message = document.getElementById('message').value;
             
             // Create WhatsApp message
-            const whatsappMessage = `Hello Elegant Interiors!%0A%0AMy name is ${name}.%0AEmail: ${email}%0APhone: ${phone}%0A%0AMessage:%0A${message}`;
+            const whatsappMessage = `Hello Pure Pleasure Building and Interior Concept!%0A%0AMy name is ${name}.%0AEmail: ${email}%0APhone: ${phone}%0A%0AMessage:%0A${message}`;
             
             // Open WhatsApp with pre-filled message
-            window.open(`https://wa.me/+2348127890779?text=${whatsappMessage}`, '_blank');
+            window.open(`https://wa.me/+234816262854?text=${whatsappMessage}`, '_blank');
             
             // Show success message
             alert('Thank you for your message! You will be redirected to WhatsApp to send your inquiry.');
