@@ -147,6 +147,7 @@
         .logo-container {
             display: flex;
             flex-direction: column;
+            align-items: flex-start;
         }
 
         .logo {
@@ -154,13 +155,21 @@
             font-size: 1.8rem;
             font-weight: 700;
             display: flex;
+            flex-direction: column;
             align-items: center;
-            gap: 10px;
+            text-align: center;
             font-family: 'Raleway', sans-serif;
             letter-spacing: 1px;
         }
 
-        .logo span {
+        .logo-line-1 {
+            font-size: 1.8rem;
+            line-height: 1.2;
+        }
+
+        .logo-line-2 {
+            font-size: 1.4rem;
+            line-height: 1.2;
             color: white;
         }
 
@@ -171,6 +180,7 @@
             border-radius: 50%;
             position: relative;
             animation: rotate 10s linear infinite;
+            margin: 0 5px;
         }
 
         @keyframes rotate {
@@ -941,6 +951,45 @@
             .modal-body {
                 padding: 20px;
             }
+
+            /* Mobile-specific header layout */
+            .logo-container {
+                align-items: center;
+                text-align: center;
+                width: 100%;
+            }
+
+            .logo {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .logo-line-1 {
+                font-size: 1.6rem;
+            }
+
+            .logo-line-2 {
+                font-size: 1.2rem;
+            }
+
+            .tagline {
+                font-size: 12px;
+                text-align: center;
+                margin-top: 5px;
+            }
+
+            nav {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px 0;
+            }
+
+            .menu-toggle {
+                position: absolute;
+                right: 20px;
+                top: 20px;
+            }
         }
 
         @media (max-width: 576px) {
@@ -955,6 +1004,18 @@
             .modal-header h3 {
                 font-size: 1.3rem;
             }
+
+            .logo-line-1 {
+                font-size: 1.4rem;
+            }
+
+            .logo-line-2 {
+                font-size: 1rem;
+            }
+
+            .tagline {
+                font-size: 10px;
+            }
         }
     </style>
 </head>
@@ -967,8 +1028,11 @@
         <div class="container">
             <nav>
                 <div class="logo-container">
-                    <div class="logo">PURE PLEASURE <span>INTERIOR CONCEPT</span></div>
-                    <div class="tagline">Expert Interior Designer & Interior Consultant</div>
+                    <div class="logo">
+                        <div class="logo-line-1">PURE PLEASURE</div>
+                        <div class="logo-line-2">INTERIOR CONCEPT</div>
+                    </div>
+                    <div class="tagline">Building & Interior Design</div>
                 </div>
                 <div class="menu-toggle">
                     <i class="fas fa-bars"></i>
