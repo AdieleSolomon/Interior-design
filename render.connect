@@ -1,3 +1,8 @@
 DATABASE_URL=mysql://root:HwqrhkDgkecQcxjoVALKdlRqMhEvtzpN@shinkansen.proxy.rlwy.net:26416/railway
 NODE_ENV=production
 JWT_SECRET=sxjscjsbfdbffbjdfdfbfw343439wdwnmwd822ne28ndndndn
+DB_HOST=mysql.railway.internal
+DB_USER=root
+DB_PASSWORD=HwqrhkDgkecQcxjoVALKdlRqMhEvtzpN
+DB_NAME=railway
+DB_PORT=3306
