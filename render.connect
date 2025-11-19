@@ -1,0 +1,3 @@
+DATABASE_URL=mysql://root:HwqrhkDgkecQcxjoVALKdlRqMhEvtzpN@shinkansen.proxy.rlwy.net:26416/railway
+NODE_ENV=production
+JWT_SECRET=sxjscjsbfdbffbjdfdfbfw343439wdwnmwd822ne28ndndndn
