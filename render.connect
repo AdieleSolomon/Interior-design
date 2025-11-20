@@ -6,3 +6,10 @@ DB_USER=root
 DB_PASSWORD=HwqrhkDgkecQcxjoVALKdlRqMhEvtzpN
 DB_NAME=railway
 DB_PORT=3306
+
+# YouTube API Configuration
+YOUTUBE_CLIENT_ID=your_youtube_client_id
+YOUTUBE_CLIENT_SECRET=your_youtube_client_secret
+YOUTUBE_REDIRECT_URI=http://localhost:3000/api/youtube/callback
+YOUTUBE_REFRESH_TOKEN=your_refresh_token_here
+YOUTUBE_CHANNEL_ID=UCFp25-UmkyXpp6oBRxJZ3oQ # From your channel URL
