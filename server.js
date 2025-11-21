@@ -19,11 +19,6 @@ const allowedOrigins = [
     'http://localhost:3000',
     'http://127.0.0.1:3000',
 
-  // Vercel frontend URLs
-    'https://pure-pleasure-interior-design.vercel.app',
-    'https://pure-pleasure-interior.vercel.app',
-    'https://pure-pleasure-design.vercel.app',
-
     // Render frontend URLs
     'https://interior-design-1-tie5.onrender.com',
     'https://pure-pleasure-frontend.onrender.com'
