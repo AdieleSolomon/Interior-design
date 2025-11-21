@@ -1757,29 +1757,45 @@
     </div>
 
     <script>
-        let API_BASE_URL = (location.hostname === 'localhost' || location.hostname === '127.0.0.1') ? 'http://localhost:3000/api' : 'https://interior-design-6mqd.onrender.com/api';
-        (async () => {
-            if (API_BASE_URL.startsWith('http://localhost')) {
-                try {
-                    const res = await fetch(`${API_BASE_URL}/health`);
-                    if (!res.ok) {
-                        throw new Error('unhealthy');
-                    }
-                } catch (e) {
-                    try {
-                        const alt = 'http://localhost:5500/api';
-                        const res2 = await fetch(`${alt}/health`);
-                        if (res2.ok) {
-                            API_BASE_URL = alt;
-                        } else {
-                            API_BASE_URL = 'https://interior-design-6mqd.onrender.com/api';
-                        }
-                    } catch (e2) {
-                        API_BASE_URL = 'https://interior-design-6mqd.onrender.com/api';
-                    }
-                }
+// 1. Primary API from environment variables (React)
+// 2. Default to live server
+let API_BASE_URL = process.env.REACT_APP_API_URL || 'https://interior-design-6mqd.onrender.com/api';
+
+// 3. If running locally, override with local dev API
+if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+    API_BASE_URL = 'http://localhost:3000/api';
+}
+
+// 4. Auto-switch API if first choice fails
+(async () => {
+    try {
+        // Try checking main API
+        const check = await fetch(`${API_BASE_URL}/health`);
+        if (!check.ok) throw new Error("Primary API unhealthy");
+    } catch (err) {
+        console.warn("Primary API failed, switching...");
+
+        // Try secondary localhost API
+        const ALT1 = 'http://localhost:5500/api';
+        try {
+            const check2 = await fetch(`${ALT1}/health`);
+            if (check2.ok) {
+                API_BASE_URL = ALT1;
+                console.log("Switched to:", API_BASE_URL);
+                return;
             }
-        })();
+        } catch (err2) {
+            console.warn("Secondary API also failed");
+        }
+
+        // Fallback to Render cloud API
+        const FALLBACK = 'https://interior-design-6mqd.onrender.com/api';
+        API_BASE_URL = FALLBACK;
+        console.log("Switched to fallback:", API_BASE_URL);
+    }
+})();
+
+export default API_BASE_URL;
 
         // Global state
         let isAdmin = false;

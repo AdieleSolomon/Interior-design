@@ -1,0 +1,19 @@
+{
+    "version": 2,
+    "name": "pure-pleasure-interior-design",
+    "builds": [
+        {
+        "src": "package.json",
+        "use": "@vercel/static"
+        }
+    ],
+    "routes": [
+        {
+        "src": "/(.*)",
+        "dest": "/public/$1"
+        }
+    ],
+    "env": {
+        "REACT_APP_API_URL": "https://interior-design-6mqd.onrender.com/api"
+    }
+}
