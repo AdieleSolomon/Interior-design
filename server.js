@@ -279,7 +279,7 @@ async function connectDB() {
         console.log('   - MYSQLHOST, MYSQLUSER, MYSQLPASSWORD (Railway default)');
         console.log('   - DB_HOST, DB_USER, DB_PASSWORD (custom)');
         console.log('   - MYSQL_interiordesign (custom connection string)');
-        process.exit(1);
+        db = null;
     }
 }
 
@@ -366,12 +366,16 @@ app.get('/api/health', (req, res) => {
         message: 'Server is running', 
         timestamp: new Date().toISOString(),
         environment: process.env.NODE_ENV || 'development',
-        database: db ? 'connected' : 'disconnected',
-        cors: {
-            allowedOrigins: allowedOrigins,
-            currentOrigin: req.headers.origin || 'No origin header'
-        }
+        database: db ? 'connected' : 'disconnected'
     });
+});
+
+app.get('/health', (req, res) => {
+    res.status(200).send('OK');
+});
+
+app.get('/', (req, res) => {
+    res.json({ success: true, message: 'API running' });
 });
 
 // Get all designs
