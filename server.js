@@ -25,8 +25,8 @@ const allowedOrigins = [
     'https://pure-pleasure-design.vercel.app',
 
     // Render frontend URLs
-    'https://pure-pleasure-frontend.onrender.com',
-    'https://your-frontend-name.onrender.com'
+    'https://interior-design-1-tie5.onrender.com',
+    'https://pure-pleasure-frontend.onrender.com'
 ];
 
 // Main middleware
