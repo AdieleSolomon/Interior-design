@@ -12,21 +12,77 @@ require('dotenv').config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Middleware
-app.use(cors({
-    origin: [
+// ========================= CORS CONFIG =========================
+
+// Allowed specific frontend origins
+const allowedOrigins = [
     'http://localhost:3000',
     'http://127.0.0.1:3000',
-    'https://your-app-name.vercel.app', // Your Vercel domain
-    'https://pure-pleasure-interior-design.vercel.app' // Example domain
-],
-credentials: true
+
+  // Vercel frontend URLs
+    'https://pure-pleasure-interior-design.vercel.app',
+    'https://pure-pleasure-interior.vercel.app',
+    'https://pure-pleasure-design.vercel.app',
+
+    // Render frontend URLs
+    'https://pure-pleasure-frontend.onrender.com',
+    'https://your-frontend-name.onrender.com'
+];
+
+// Main middleware
+app.use(cors({
+    origin: function (origin, callback) {
+    // Allow non-browser requests (Postman, mobile apps, curl)
+    if (!origin) return callback(null, true);
+
+    // Allow ALL *.onrender.com subdomains
+    if (origin.endsWith('.onrender.com')) {
+        console.log(`✅ Allowed Render origin: ${origin}`);
+        return callback(null, true);
+        }
+
+        // Allow ALL *.vercel.app subdomains
+        if (origin.endsWith('.vercel.app')) {
+        console.log(`✅ Allowed Vercel origin: ${origin}`);
+        return callback(null, true);
+    }
+
+    // Check specific allowed origins list
+    if (!allowedOrigins.includes(origin)) {
+        console.log(`🚫 CORS BLOCKED: ${origin}`);
+        const msg = 'CORS blocked: Origin not allowed.';
+        return callback(new Error(msg), false);
+        }
+
+        console.log(`✅ Allowed origin: ${origin}`);
+        return callback(null, true);
+    },
+
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With']
 }));
+
+// Handle preflight requests
+app.options('*', cors());
+
+// Body parser
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Serve uploaded files statically
+
+// Serve uploaded files statically - with production path handling
 app.use('/api/uploads', express.static(path.join(__dirname, 'uploads')));
+
+// Serve frontend static files in production
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static(path.join(__dirname, '../frontend/build')));
+    
+    // Catch-all handler for SPA
+    app.get('*', (req, res) => {
+        res.sendFile(path.join(__dirname, '../frontend/build/index.html'));
+    });
+}
 
 // Ensure uploads directory exists
 const uploadsDir = path.join(__dirname, 'uploads');
@@ -315,7 +371,11 @@ app.get('/api/health', (req, res) => {
         message: 'Server is running', 
         timestamp: new Date().toISOString(),
         environment: process.env.NODE_ENV || 'development',
-        database: db ? 'connected' : 'disconnected'
+        database: db ? 'connected' : 'disconnected',
+        cors: {
+            allowedOrigins: allowedOrigins,
+            currentOrigin: req.headers.origin || 'No origin header'
+        }
     });
 });
 
@@ -1085,6 +1145,14 @@ app.get('/api/admin/verify', authenticateToken, (req, res) => {
     res.json({ success: true, message: 'Token is valid', user: req.user });
 });
 
+// Serve frontend static files in production
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static(path.join(__dirname, '../frontend/build')));
+    app.get('*', (req, res) => {
+        res.sendFile(path.join(__dirname, '../frontend/build/index.html'));
+    });
+}
+
 // Error handling for file uploads
 app.use((error, req, res, next) => {
     if (error instanceof multer.MulterError) {
@@ -1127,6 +1195,8 @@ async function startServer() {
         console.log('   4. Copy the refresh token from the success page');
         console.log('   5. Add it to your .env file as YOUTUBE_REFRESH_TOKEN');
         console.log('   6. Restart the server and test the connection');
+        console.log('\n🌐 CORS Configuration:');
+        console.log('   Allowed origins:', allowedOrigins);
     });
 }
 

@@ -13,3 +13,6 @@ YOUTUBE_CLIENT_SECRET=your_youtube_client_secret
 YOUTUBE_REDIRECT_URI=http://localhost:3000/api/youtube/callback
 YOUTUBE_REFRESH_TOKEN=
 YOUTUBE_CHANNEL_ID=UCFp25-UmkyXpp6oBRxJZ3oQ # From your channel URL
+
+# Frontend URL for CORS
+FRONTEND_URL=https://pure-pleasure-frontend.onrender.com

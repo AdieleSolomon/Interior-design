@@ -1,0 +1,22 @@
+{
+    "name": "pure-pleasure-frontend",
+    "version": "1.0.0",
+    "description": "Pure Pleasure Interior Design Frontend",
+    "keywords": ["interior-design", "frontend"],
+    "author": "Pure Pleasure Building and Interior Concept LTD",
+    "license": "MIT",
+
+    "scripts": {
+        "build": "echo 'Building frontend for production' && mkdir -p build && cp -r *.html *.css *.js build/",
+        "start": "serve -s . -p $PORT",
+        "dev": "serve -s . -p 3000"
+    },
+
+    "dependencies": {
+        "serve": "^14.2.0"
+    },
+
+    "engines": {
+    "node": ">=14.0.0"
+    }
+}
