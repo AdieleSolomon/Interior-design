@@ -190,15 +190,24 @@ async function connectDB() {
                 throw new Error('No database configuration found for production environment');
             }
         } else {
-            // Development database (Laragon MySQL)
             console.log('🔗 Connecting to local MySQL database...');
-            db = await mysql.createConnection({
-                host: process.env.DB_HOST || 'localhost',
-                user: process.env.DB_USER || 'root',
-                password: process.env.DB_PASSWORD || '',
-                database: process.env.DB_NAME || 'pure_pleasure_db',
-                port: process.env.DB_PORT || 3306
-            });
+            const host = process.env.DB_HOST || 'localhost';
+            const user = process.env.DB_USER || 'root';
+            const password = process.env.DB_PASSWORD || '';
+            const database = process.env.DB_NAME || 'pure_pleasure_db';
+            const port = process.env.DB_PORT || 3306;
+            try {
+                db = await mysql.createConnection({ host, user, password, database, port });
+            } catch (err) {
+                if (err && err.code === 'ER_BAD_DB_ERROR') {
+                    const tmp = await mysql.createConnection({ host, user, password, port });
+                    await tmp.query(`CREATE DATABASE IF NOT EXISTS \`${database}\``);
+                    await tmp.end();
+                    db = await mysql.createConnection({ host, user, password, database, port });
+                } else {
+                    throw err;
+                }
+            }
             console.log('✅ Connected to local database');
         }
         
@@ -269,7 +278,7 @@ async function initDB() {
 }
 
 // JWT Secret
-const JWT_SECRET = process.env.JWT_SECRET || 'your-super-secret-jwt-key-change-in-production';
+const JWT_SECRET = process.env.JWT_SECRET || 'sxjscjsbfdbffbjdfdfbfw343439wdwnmwd822ne28ndndndn';
 
 // Authentication middleware
 const authenticateToken = (req, res, next) => {
